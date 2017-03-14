@@ -100,13 +100,13 @@
   position: relative;
   flex: 0 1 auto;
 
-/**
-  * 1. I know this might potentially counter-act any
-  *    line-heights set, however this + the whole
-  *    "overflow-hidden" piece can potential causes lines
-  *    with tigheter line heights to become unintentionally
-  *    chopped off the tops / bottoms of taller letters.
-  */
+  /**
+    * 1. I know this might potentially counter-act any
+    *    line-heights set, however this + the whole
+    *    "overflow-hidden" piece can potential causes lines
+    *    with tigheter line heights to become unintentionally
+    *    chopped off the tops / bottoms of taller letters.
+    */
 
   .c-heading--line & {
     padding-right: $spacing-unit;
@@ -131,10 +131,10 @@
 .c-heading__text:before {
   right: 100%;
 }
+
 .c-heading__text:after {
   left: 100%;
 }
-
 
 
 .c-heading--uppercase {

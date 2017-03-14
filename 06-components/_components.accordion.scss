@@ -2,147 +2,112 @@
    #ACCORDION
    ========================================================================== */
 
-$accordion-header-color: palette(gray, lightest-hover) !default;
-$accordion-header-color--hover: palette(gray, lightest-hover) !default;
-$accordion-header-color--active: palette(gray, lightest-active) !default;
-$accordion-transition: all 0.2s ease !default;
+$header-color: #fff !default;
+$header-color--hover: palette(gray, lighter) !default;
+$header-color--active: palette(gray, light) !default;
 
-.c-accordion-wrapper {
-  border-color: palette(gray, lighter);
-  border-width: 0 1px 1px 1px;
-  border-style: solid;
-  @include font-size('small');
-}
-
-.c-accordion {
-  border-radius: $global-border-radius;
-  border-color: palette(gray, lighter);
-  border-width: 1px;
-  border-style: solid;
-  overflow: hidden;
-}
-
-.c-accordions {
-  margin-bottom: $spacing-unit-large;
-}
+$border-color: palette(gray, lighter) !default;
 
 .c-accordion__trigger {
   display: none;
 }
 
-/**
-  * Accordion Header
-  */
+.c-accordion {
+  border: 1px solid $border-color;
+  margin-bottom: $spacing-unit;
+}
+
 .c-accordion__header {
-  @extend %o-flag;
-  @extend %o-flag--center;
   @include no-select();
   @include font-size(base);
-  padding: 10px $spacing-unit;
-  transition: $accordion-transition;
+
+  padding: ($spacing-unit / 3) ($spacing-unit / 2);
   cursor: pointer;
   position: relative;
-  margin-bottom: 0; // Labels elements previously had a default margin-bottom assigned
-  background-color: $accordion-header-color;
-  border-bottom: 1px solid palette(gray, lighter);
 
-  //Shouldn't be necessary but unfortunately there's old way too generic :checked styles that cause our accordion component's :checked state to become messed up. Putting these in vs doing something way too heavy handed. TODO: Remove once new default checkbox styles are in place.
-  &:before {
-    @include visuallyhidden();
-  }
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  border-bottom: 1px solid $border-color;
+  background-color: $header-color;
 
   &:hover {
-    background-color: $accordion-header-color--hover;
+    background-color: $header-color--hover;
   }
 
   &:active {
-    background-color: $accordion-header-color--active;
+    background-color: $header-color--active;
   }
 
-
-  // Accordion header variation where image / icon is on the right side vs the left.
-  &.c-accordion__header--rev {
-    @extend %o-flag--rev;
-  }
 }
-
 
 .c-accordion__header-text {
-  @include font-weight('bold');
-  @include font-size('small');
-}
-
-
-.c-accordion__icon-wrapper {
-  @extend %o-flag__image;
+  @include font-weight('medium');
 }
 
 .c-accordion__icon {
-  height: $spacing-unit;
-  width: $spacing-unit;
-  display: block;
+  height: $spacing-unit / 2;
+  width: $spacing-unit / 2;
+  transition: 0.3s transform ease;
+  transform-origin: 50% 50%;
   position: relative;
+  display: inline-block;
 
   &:before,
   &:after {
     content: '';
     position: absolute;
     background-color: currentColor;
-    transition: $accordion-transition;
-    display: block;
+    transition: transform 0.3s ease;
   }
 
-  /* Shared vertical and horizontal line behavior */
-  &:before,
+  /* Vertical line */
+  &:before {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%) rotate(0);
+  }
+
+  /* horizontal line */
   &:after {
     top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%) rotate(0);
-    transform: translate3d(-50%, -50%, 0) rotate(0);
-  }
-
-  // Vertical line
-  &:before {
-    height: $spacing-unit;
-    width: 2px;
-  }
-
-  // Horizontal line
-  &:after {
+    left: 0;
+    width: 100%;
     height: 2px;
-    width: $spacing-unit;
+    transform: translateY(-50%) rotate(0);
   }
 }
 
-
-// The "thing" that actually animates to hide / show the content.
 .c-accordion__content-wrapper {
   max-height: 0;
   overflow: hidden;
-  transition: $accordion-transition;
+  transition: all 0.4s ease;
   padding: 0;
 }
 
-// .c-accordion__content {
-//   padding: $spacing-unit;
-// }
+.c-accordion__content {
+  padding: $spacing-unit / 2;
+  background: palette(gray, lightest);
+  border-bottom: 1px solid $border-color;
+}
 
 
 // Accordion states.
 .c-accordion__trigger:checked {
   ~ .c-accordion__header .c-accordion__icon {
+    transform: rotate(180deg);
+
     &:before {
-      transform: translateX(-50%) translateY(-50%) rotate(270deg);
-      transform: translate3d(-50%, -50%, 0) rotate(270deg);
+      transform: translateX(-50%) rotate(90deg);
     }
     &:after {
-      transform: translateX(-50%) translateY(-50%) rotate(360deg);
-      transform: translate3d(-50%, -50%, 0) rotate(360deg);
+      transform: translateY(-50%) rotate(180deg);
     }
   }
-}
 
-.c-accordion__trigger:checked ~ .c-accordion__content-wrapper {
-  max-height: 9999px;
-  transition: $accordion-transition;
+  ~ .c-accordion__content-wrapper {
+    max-height: 9999px;
+    transition: all 0.4s ease;
+  }
 }

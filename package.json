@@ -5,7 +5,7 @@
   "main": "_components.all.scss",
   "scripts": {
     "autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers 'last 3 versions' 'ie 9-11' -r build/pk-toolkit.css",
-    "build": "npm run clean && mkdir -p ./build && cat ./tests/_pegakit.sass-build-test.scss | npm run lint && node_modules/.bin/node-sass --include-path node_modules/ --output-style compressed > build/pk-toolkit.css && npm run autoprefixer",
+    "build": "npm run clean && npm run lint && mkdir -p ./build && cat ./tests/_pegakit.sass-build-test.scss | node-sass --include-path ./node_modules/ --output-style compressed > build/pk-toolkit.css",
     "clean": "rm -rf build",
     "lint": "stylelint '*/**/*.scss' --syntax scss",
     "test": "npm run build"

@@ -145,7 +145,7 @@ $use_flex: true;
 
 
 /**
-  * Wrapping container around all panels and labels for those 
+  * Wrapping container around all panels and labels for those
   * panels.
   */
 .c-tabs__panels {
@@ -324,13 +324,13 @@ $use_flex: true;
       margin-left: 0;
       width: 100%;
 
-      @if ($use_flex){
+      @if ($use_flex) {
         flex-basis: 100%;
       }
     }
 
     @include respond-to(small) {
-      @if ($use_flex){
+      @if ($use_flex) {
         flex-basis: auto;
       }
     }

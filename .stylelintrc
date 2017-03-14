@@ -81,8 +81,9 @@
       2,
       {
         ignore: [
-          'blockless-at-rules',
+          'blockless-at-rules'
         ],
+        ignoreAtRules: ['supports', 'if']
       },
     ],
     'media-feature-colon-space-after': 'always',
