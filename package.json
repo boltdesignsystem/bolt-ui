@@ -1,5 +1,5 @@
 {
-  "name": "pegakit-ui",
+  "name": "@bolt/ui",
   "version": "1.0.0-beta.1",
   "description": "PegaKit's opinionated UI Toolkit. Builds on top of the CSS Framework-portion of Pegakit.",
   "main": "_components.all.scss",
